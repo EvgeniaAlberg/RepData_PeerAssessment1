@@ -128,14 +128,6 @@ $(document).ready(function () {
 <div id="loading-and-preprocessing-the-data" class="section level1">
 <h1>Loading and preprocessing the data</h1>
 <p>The code assumes the activity.csv file is located in your working directory The code in this file requires the dplyr package to be loaded. They are assumed to be installed</p>
-<pre><code>## 
-## Attaching package: 'dplyr'</code></pre>
-<pre><code>## The following objects are masked from 'package:stats':
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union</code></pre>
 <div id="load-the-data" class="section level3">
 <h3>Load the data</h3>
 <pre class="r"><code>ActData &lt;- read.csv(&quot;activity.csv&quot;, header = TRUE)</code></pre>
@@ -252,8 +244,8 @@ MedianSteps &lt;- as.integer(median(StepsPerDay$steps_per_day))</code></pre>
 <p>Please note that for this part I used the original Dataset again with the NA values removed. Also I first have to set my local time to English otherwise I get the Dutch names for the days of the week.</p>
 <pre class="r"><code>Sys.setlocale(&quot;LC_TIME&quot;, &quot;C&quot;)</code></pre>
 <pre><code>## [1] &quot;C&quot;</code></pre>
-<div id="create-a-new-factor-variable-in-the-dataset-with-two-levels-weekday-and-weekend-indicating-whether-a-given-date-is-a-weekday-or-weekend-day." class="section level3">
-<h3>Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.</h3>
+<div id="create-a-new-factor-variable-in-the-dataset-with-two-levels-a-aweekdaya-and-aweekenda-indicating-whether-a-given-date-is-a-weekday-or-weekend-day." class="section level3">
+<h3>Create a new factor variable in the dataset with two levels â€“ â€œweekdayâ€ and â€œweekendâ€ indicating whether a given date is a weekday or weekend day.</h3>
 <pre class="r"><code>bWeekend &lt;- (weekdays(ActDataClean$date) == &quot;Saturday&quot; | weekdays(ActDataClean$date) == &quot;Sunday&quot;)
 ActDataDay &lt;- mutate(ActDataClean, day = factor(case_when(bWeekend ~ &quot;weekend&quot;, !bWeekend ~ &quot;weekday&quot;)))</code></pre>
 </div>
